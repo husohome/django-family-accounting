@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+    {% block title %}
+    Accounting summary
+    {% endblock title %}
+    {% block content %}
+        {% if total_entries %}
+                <div class = 'card'>
+                    <span class = 'accentuated_tag'>總計</span>
+                    <ul>
+                        <li><span class = 'tag'>收入</span>
+                            <span class ='entry_data'>{{ total_income }}</span>
+                        </li>
+                        <li><span class = 'tag'>支出</span>
+                            <span class ='entry_data'>{{ total_expenditure }}</span>
+                        </li>
+                        <li><span class = 'tag'>結餘</span>
+                            <span class ='entry_data'>{{ amount_left }}</span>
+                        </li>
+                    </ul>
+                </div>
+                {% autoescape off %}
+                <div class='card'>
+                    <span class = 'accentuated_tag'>按月小計</span>
+                    {{ df_by_month }}
+                </div>
+                {% endautoescape %}
+            {% for entry in total_entries %}
+                <a href = '/accounting_entry/{{ entry.id }}'>
+                    <div class='card'>
+                        {% if entry.entry_type == 'OUT' %}
+                        <span class = 'accentuated_tag'>支出: author</span>
+                        {% else %}
+                        <span class = 'accentuated_tag'>收入: author</span>
+                        {% endif %}
+                        <ul>
+                            <li><span class = 'tag'>日期</span>
+                                <span class = 'entry_data'>{{ entry.pub_date }}</span>
+                            </li>
+                            <li><span class = 'tag'>金額</span>
+                                <span class = 'entry_data'>{{ entry.amount }}</span>
+                            </li>
+                            <li><span class = 'tag'>項目</span>
+                                <span class = 'entry_data'>{{ entry.item|escape }}</span>
+                            </li>
+                            <li><span class = 'tag'>備註</span>
+                                <span class = 'entry_data'>{{ entry.note|truncatewords:10 }}</span>
+                            </li>
+                            <li><span class = 'tag'>收據</span>
+                                <span class = 'entry_data'>{{ entry.receipt|escape }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <div class='card'>
+                <p>目前沒有任何紀錄</p>
+            </div>
+        {% endif %}
+    {% endblock content %}

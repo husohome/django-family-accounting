@@ -32,9 +32,10 @@ header {
     box-shadow: .1em .1em .1em #bcde55;
 }
 
+.logo, .logo a {color: #758f19;}
+
 .logo {
     font-weight: 800;
-    color: #758f19;
     padding: .5em;
 }
 

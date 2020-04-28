@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="zh-tw">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>{% block title %} {% endblock title %}</title>
+        <link rel='stylesheet' href='{% static 'accounting_entry/style.css' %}'>
+        <script type = 'text/javascript'>
+            function toggle_display(){
+                const menuButton = document.getElementsByClassName('menu_button')[0];
+                const navBar = document.getElementsByTagName('nav')[0]
+                                    .getElementsByTagName('ul')[0];
+
+                navBar.classList.toggle('active');
+            }
+        </script>
+    </head>
+    <body>
+
+    <header>
+        <div class = 'logo'>
+            <span><a href="{% url 'accounting_entry:homepage' %}">住院明細</a></span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'accounting_entry:add' %}">新增明細</li>
+                <li><a href="{% url 'accounting_entry:manage' %}">管理由我po的明細</li>
+                <li><a href="#">選項三</li>
+                <li><a href="#">選項四</li>
+            </ul>
+            <a href="#" class = 'menu_button' onclick="toggle_display()">
+                    <span>選單</span>
+            </a>
+        </nav>
+    </header>
+
+    <div class='main_container'>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <footer>
+        All rights reserved. 2020 by Nicolas S. Hu Made with Django
+    </footer>
+    </body>
+</html>
