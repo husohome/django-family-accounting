@@ -135,6 +135,27 @@ nav li a {
     margin: 0;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    grid-gap: .2em;
+    width: minmax(100%, 450px);
+}
+
+input, textarea, select {
+    border: 1px solid #bcde55;
+    border-radius: .2em;
+    padding: .4em;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #bcde55;
+    letter-spacing: .3em;
+    font-weight: 800;
+}
+
 footer {
     grid-area: footer;
     font-weight: 300;
