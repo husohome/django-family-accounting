@@ -24,10 +24,18 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{% url 'accounting_entry:add' %}">新增明細</li>
-                <li><a href="{% url 'accounting_entry:manage' %}">管理由我po的明細</li>
-                <li><a href="#">選項三</li>
-                <li><a href="#">選項四</li>
+                <li><a href="{% url 'accounting_entry:add' %}">新增明細</a></li>
+                <li><a href="{% url 'accounting_entry:manage' %}">管理我的明細</a></li>
+            {% if user.is_authenticated %}
+            <li>
+                <form action = "{% url 'users:logout_user' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value = "登出 {{ user.username }}"> </input>
+                </form>
+            </li>
+            {% else %}
+                <li><a href="{% url 'users:login_user' %}">登入</a></li>
+            {% endif %}
             </ul>
             <a href="#" class = 'menu_button' onclick="toggle_display()">
                     <span>選單</span>

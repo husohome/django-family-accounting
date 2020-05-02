@@ -11,7 +11,7 @@ class EntryForm(ModelForm):
         fields = ['pub_date', 'item', 'entry_type', 'amount', 'note', 'receipt']
         widgets = {
             #'item': Select(choices = generate_choices()),
-            'entry_type': RadioSelect()
+            #'entry_type': RadioSelect()
         }
         localized_fields = ('pub_date',)
 

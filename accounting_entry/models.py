@@ -3,6 +3,7 @@ from django import forms
 from django.db import models
 from django.core.validators import MinValueValidator
 from django.utils import timezone
+from django.contrib.auth.models import User
 # Create your models here.
 
 #class Item(models.Model):
@@ -23,6 +24,7 @@ class Entry(models.Model):
     amount = models.IntegerField('金額', validators = [MinValueValidator(0, message = '花費不能是負的')])
     note = models.TextField('備註')
     receipt = models.CharField('收據', max_length = 40)
+    author = models.ForeignKey(User, default = None, on_delete = models.CASCADE)
 
     class Meta:
         ordering = ['-pub_date']

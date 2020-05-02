@@ -28,9 +28,9 @@
                 <a href = '/accounting_entry/{{ entry.id }}'>
                     <div class='card'>
                         {% if entry.entry_type == 'OUT' %}
-                        <span class = 'accentuated_tag'>支出: author</span>
+                        <span class = 'accentuated_tag'>支出: {{ entry.author }}</span>
                         {% else %}
-                        <span class = 'accentuated_tag'>收入: author</span>
+                        <span class = 'accentuated_tag'>收入: {{ entry.author }}</span>
                         {% endif %}
                         <ul>
                             <li><span class = 'tag'>日期</span>

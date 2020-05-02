@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from .models import Entry
 from .forms import EntryForm, EntryFormSet
 import pandas as pd
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url="users:login_user")
 def summary_page(request):
     total_entries = Entry.objects.order_by('-pub_date')
     df = pd.DataFrame(
@@ -31,17 +33,19 @@ def summary_page(request):
     }
     return render(request, 'accounting_entry/summary.html', context)
 
+@login_required(login_url="users:login_user")
 def detail(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     return render(request, 'accounting_entry/detail.html', {'entry':entry})
 
+@login_required(login_url="users:login_user")
 def add_entry(request):
     if request.method == 'POST':
         f = EntryForm(request.POST)
         if f.is_valid():
             # save article to db
             instance = f.save(commit=False)
-            #instance.author = request.user
+            instance.author = request.user
             instance.save()
             return redirect('accounting_entry:homepage')
     else:
@@ -61,7 +65,7 @@ def manage_entries(request):
             # save article to db
             instances = f.save(commit=False)
             for instance in instances:
-                #instance.author = request.user
+                instance.author = request.user
                 instance.save()
             return redirect('accounting_entry:homepage')
     else:

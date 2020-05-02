@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %} 使用者登入 {% endblock title %}
 {% block content %}
-<form action = "{% url 'login_user' %}" method = 'POST'>
+<form action = "{% url 'users:login_user' %}" method = 'POST'>
     {% csrf_token %}
-    {{f}}
+    {{ f }}
     {% if request.GET.next %}
         <input type='hidden' name ='next' value = '{{ request.GET.next }}'>
     {% endif %}

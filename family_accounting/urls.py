@@ -21,7 +21,7 @@ from accounting_entry import views as accounting_entry_views
 urlpatterns = [
     path('accounting_entry/', include('accounting_entry.urls')),
     path('create_user', views.create_user),
-    path('login_user', views.login_user, name='login_user'),
+    path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
-    path('', views.homepage),
+    path('', views.homepage)
 ]
