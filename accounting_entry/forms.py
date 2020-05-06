@@ -1,4 +1,4 @@
-from django.forms import ModelForm, RadioSelect, modelformset_factory
+from django.forms import ModelForm, RadioSelect
 from .models import Entry
 
 def generate_choices():
@@ -14,9 +14,6 @@ class EntryForm(ModelForm):
             #'entry_type': RadioSelect()
         }
         localized_fields = ('pub_date',)
-
-
-EntryFormSet = modelformset_factory(Entry, fields='__all__', extra = 0)
 
 #class ItemForm(ModelForm):
 #    class Meta:

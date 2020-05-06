@@ -78,7 +78,7 @@ nav ul {
     justify-content: space-evenly;
 }
 
-nav li, .card li {
+nav li, .card li, .manage-card li {
     display: block;
     list-style: none;
     padding: 10px;
@@ -102,23 +102,27 @@ nav li a {
     grid-area: main_container;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     grid-gap: 1.5em;
     padding: 2em;
 }
 
-.card {
+.card, .manage-card {
     box-shadow: .2em .2em .1em #e6f3bf;
     border: 1px solid #6a7f7a;
     padding: 0;
-    width: 10em;
 }
 
-.card ul, .detail ul {
+.card {
+    width: 10em;
+    overflow-wrap: break-word;
+}
+
+.card ul, .manage-card ul {
     display: block;
 }
 
-.card .tag, .detail .tag {
+.card .tag, .manage-card .tag {
     padding: .2em;
     border: 1px solid #6a7f7a;
     color: #6a7f7a;
@@ -126,13 +130,25 @@ nav li a {
     font-size: .7em;
 }
 
-.card .accentuated_tag, .detail .accentuated_tag {
+.accentuated_tag {
     background-color: #6a7f7a;
     color: white;
     max-width: 100%;
     border-radius: 0 0 .4em 0;
     padding: .2em;
     margin: 0;
+}
+
+.manage-card {
+    max-width: 49em;
+    margin: 1em auto;
+    border: 1px solid #ecf6d0;
+    padding: 1em;
+    border-radius: .4em;
+}
+
+.manage-card .accentuated_tag {
+    border-radius: .2em .2em 0 0;
 }
 
 form {
@@ -160,9 +176,6 @@ table, thead, th, tr, td {
     border-collapse: collapse;
     padding: 1px;
     border: 1px solid #ccc;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
     margin: 0 auto;
 }
 

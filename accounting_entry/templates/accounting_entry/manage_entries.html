@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 {% block title %} 新增支出/收入明細 {% endblock title %}
 {% block content %}
-<form action='{% url "accounting_entry:manage" %}' method="post"  enctype="multipart/form-data">
+{% if f_len %}
+<form action='{% url "accounting_entry:manage" %}' method="POST">
     {% csrf_token %}
-    {{f}}
-    <input type="submit" value="確認後送出">
+    <input type = "hidden" name = "form-TOTAL_FORMS" value = "{{ f|length }}">
+    <input type = "hidden" name = "form-INITIAL_FORMS" value = "{{ f|length }}">
+    <input type = "hidden" name = "form-MAX_NUM_FORMS" value = "{{ f|length }}">
+    {% for form in f %}
+        <div class = 'manage-card'>
+            {% if edit_mode %}
+            <p  class="accentuated_tag"> 修改明細 </p>
+            {% else %}
+            <p  class="accentuated_tag"> 第{{ forloop.counter }}筆 </p>
+            {% endif %}
+            {{ form }}
+        </div>
+    {% endfor %}
+    <input type="submit" value="確認修改後送出">
 </form>
-
+{% else %}
+<p> 目前沒有你所po的明細，按此<a href="{% url 'accounting_entry:add' %}">新增明細</a>。</p>
+{% endif %}
 {% endblock content %}

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+from django.forms import modelformset_factory
 from .models import Entry
-from .forms import EntryForm, EntryFormSet
+from .forms import EntryForm
 import pandas as pd
 from django.contrib.auth.decorators import login_required
 
@@ -36,7 +38,29 @@ def summary_page(request):
 @login_required(login_url="users:login_user")
 def detail(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
+    if entry.author == request.user:
+        return HttpResponseRedirect(reverse('accounting_entry:edit', args=(entry_id,)))
     return render(request, 'accounting_entry/detail.html', {'entry':entry})
+
+@login_required(login_url="users:login_user")
+def edit_entry(request, entry_id):
+    if request.user != Entry.objects.get(id=entry_id).author:
+        return HttpResponseRedirect(reverse('accounting_entry:detail', args=(entry_id,)))
+    else:
+        EntryFormSet = modelformset_factory(
+            Entry,
+            exclude = ('author', ),
+            extra = 0,
+            can_delete=True
+        )
+        if request.method == 'POST':
+            f = EntryFormSet(request.POST, queryset=Entry.objects.filter(author=request.user,id=entry_id))
+            if f.is_valid():
+                instances = f.save(commit=True)
+                return HttpResponseRedirect(reverse('accounting_entry:homepage'))
+        else:
+            f = EntryFormSet(queryset=Entry.objects.filter(author=request.user,id=entry_id))
+    return render(request, 'accounting_entry/manage_entries.html', {'f':f, 'f_len':len(f)>0, 'edit_mode':True})
 
 @login_required(login_url="users:login_user")
 def add_entry(request):
@@ -47,7 +71,7 @@ def add_entry(request):
             instance = f.save(commit=False)
             instance.author = request.user
             instance.save()
-            return redirect('accounting_entry:homepage')
+            return HttpResponseRedirect(reverse('accounting_entry:homepage'))
     else:
         #items = list(set([(e.item, e.item) for e in Entry.objects.all()]))
         #if len(items) == 0:
@@ -58,21 +82,29 @@ def add_entry(request):
         return render(request, 'accounting_entry/add_entry.html', {'f':f})
 
 # manage all instances --- maybe add user functionality
+@login_required(login_url="users:login_user")
 def manage_entries(request):
+    EntryFormSet = modelformset_factory(
+        Entry,
+        exclude = ('author', ),
+        extra = 0,
+        can_delete=True
+    )
     if request.method == 'POST':
-        f = EntryFormSet(request.POST)
+        f = EntryFormSet(request.POST, queryset=Entry.objects.filter(author=request.user).order_by('-pub_date'))
         if f.is_valid():
             # save article to db
-            instances = f.save(commit=False)
-            for instance in instances:
-                instance.author = request.user
-                instance.save()
-            return redirect('accounting_entry:homepage')
+            instances = f.save(commit=True)
+            #for instance in instances:
+            #    instance.author = request.user
+            #    instance.save()
+            return HttpResponseRedirect(reverse('accounting_entry:homepage'))
     else:
         #items = list(set([(e.item, e.item) for e in Entry.objects.all()]))
         #if len(items) == 0:
         #    items = [("新增","新增")]
-        f = EntryFormSet()
+        f = EntryFormSet(queryset=Entry.objects.filter(author=request.user).order_by('-pub_date'))
+
         #f.Meta.widgets = {"item": Select(choices = items)}
         #return HttpResponse(items)
-        return render(request, 'accounting_entry/manage_entries.html', {'f':f})
+    return render(request, 'accounting_entry/manage_entries.html', {'f':f, 'f_len':len(f)>0})

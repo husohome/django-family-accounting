@@ -2,11 +2,11 @@
 {% block title %} 明細 -- {{entry.item}} {% endblock title %}
 {% if error_message %} <p> <strong> {{error_message}} </strong> </p>  {% endif %}
 {% block content %}
-<div class = 'detail'>
+<div class = 'manage-card'>
     {% if entry.entry_type == 'out' %}
-    <span class = 'accentuated_tag'>支出: author</span>
+    <span class = 'accentuated_tag'>支出: {{ entry.author }}</span>
     {% else %}
-    <span class = 'accentuated_tag'>收入: author</span>
+    <span class = 'accentuated_tag'>收入: {{ entry.author }}</span>
     {% endif %}
     <ul>
         <li><span class = 'tag'>日期</span>

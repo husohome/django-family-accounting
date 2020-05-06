@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block title %} 新使用者註冊 {% endblock title %}
-{% block content %}
-<form action = "create_user" method = "post">
-{% csrf_token %}
-{{f}}
-<input type = "submit" value = "確認後送出">
-</form>
-{% endblock %}
