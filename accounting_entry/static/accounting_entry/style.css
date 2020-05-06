@@ -202,10 +202,6 @@ footer {
         display: flex;
     }
 
-    header {
-        height: 100%;
-    }
-
     header, nav ul {
         display: flex;
         flex-direction: column;
@@ -231,27 +227,19 @@ footer {
         flex-direction: column;
     }
 
-    nav li, .logo_if_small {
+    nav li, .logo {
         text-align: center;
         border-bottom: 1px solid #bcde55;
     }
 
-    .card, .detail {
+    .card, .manage-card {
         width: 100%;
     }
 
-    .card ul, .detail ul {
+    .card ul, .manage-card ul {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
-    }
-
-    .logo_if_small {
-        display: flex;
-    }
-
-    .logo {
-        display: none;
     }
 
 }

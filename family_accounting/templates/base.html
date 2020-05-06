@@ -24,9 +24,6 @@
         </div>
         <nav>
             <ul>
-                <li class='logo_if_small'>
-                    <a href="{% url 'accounting_entry:homepage' %}">住院明細</a>
-                </li>
                 <li><a href="{% url 'accounting_entry:add' %}">新增明細</a></li>
                 <li><a href="{% url 'accounting_entry:manage' %}">修改我的明細</a></li>
             {% if user.is_authenticated %}
