@@ -203,6 +203,7 @@ footer {
         flex-wrap: wrap;
         flex-direction: column;
         justify-content: flex-start;
+        max-width: 100%;
     }
 
     nav, nav ul, .main_container {
@@ -223,10 +224,13 @@ footer {
         flex-direction: column;
     }
 
+    .logo {
+        width: 100%;
+    }
+
     nav li, .logo {
         text-align: center;
         border-bottom: 1px solid #bcde55;
-        width: 100%;
     }
 
     .card, .detail {
