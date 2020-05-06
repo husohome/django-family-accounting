@@ -202,7 +202,8 @@ footer {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        background: orange;
     }
 
     nav, nav ul, .main_container {
