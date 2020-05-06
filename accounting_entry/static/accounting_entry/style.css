@@ -32,11 +32,15 @@ header {
     box-shadow: .1em .1em .1em #bcde55;
 }
 
-.logo, .logo a {color: #758f19;}
+.logo, .logo a, .logo_if_small, .logo_if_small a {color: #758f19;}
 
-.logo {
+.logo, .logo_if_small {
     font-weight: 800;
     padding: .5em;
+}
+
+.logo_if_small {
+    display: none;
 }
 
 .menu_button {
@@ -237,6 +241,10 @@ footer {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+    }
+
+    .logo_if_small {
+        display: flex;
     }
 
 }
