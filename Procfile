@@ -1,1 +1,1 @@
-web: gunicorn djangobook.wsgi
+web: gunicorn family_accounting.wsgi
