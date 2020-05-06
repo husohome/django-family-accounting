@@ -203,7 +203,6 @@ footer {
         flex-wrap: wrap;
         flex-direction: column;
         justify-content: flex-start;
-        background: orange;
     }
 
     nav, nav ul, .main_container {
@@ -227,6 +226,7 @@ footer {
     nav li, .logo {
         text-align: center;
         border-bottom: 1px solid #bcde55;
+        width: 100%;
     }
 
     .card, .detail {
