@@ -203,7 +203,7 @@ footer {
     }
 
     header {
-        min-height: 400px;
+        height: 100%;
     }
 
     header, nav ul {
