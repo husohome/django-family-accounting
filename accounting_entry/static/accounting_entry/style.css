@@ -199,8 +199,9 @@ footer {
     }
 
     header, nav ul {
+        display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
     }
 
     nav, nav ul, .main_container {
