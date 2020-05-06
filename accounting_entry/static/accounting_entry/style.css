@@ -228,7 +228,7 @@ footer {
         flex-direction: column;
     }
 
-    nav li, .logo {
+    nav li, .logo_if_small {
         text-align: center;
         border-bottom: 1px solid #bcde55;
     }
@@ -245,6 +245,10 @@ footer {
 
     .logo_if_small {
         display: flex;
+    }
+
+    .logo {
+        display: none;
     }
 
 }
