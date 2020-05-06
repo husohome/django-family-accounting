@@ -202,6 +202,10 @@ footer {
         display: flex;
     }
 
+    header {
+        min-height: 400px;
+    }
+
     header, nav ul {
         display: flex;
         flex-direction: column;
