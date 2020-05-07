@@ -31,7 +31,7 @@ def summary_page(request):
         'total_entries': total_entries,
         'amount_left': income - expenditure,
         'df': df.to_html(),
-        'df_by_month': df.groupby(['年', '月'])[['收入','支出']].sum().to_html(),
+        'df_by_month': df.groupby(['年', '月'])[['收入','支出']].sum().reset_index().to_html(),
     }
     return render(request, 'accounting_entry/summary.html', context)
 
