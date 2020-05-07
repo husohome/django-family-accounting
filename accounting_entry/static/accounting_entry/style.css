@@ -198,6 +198,12 @@ footer {
 
 @media (max-width: 400px) {
 
+    body {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap
+    }
+
     .menu_button {
         display: flex;
     }
