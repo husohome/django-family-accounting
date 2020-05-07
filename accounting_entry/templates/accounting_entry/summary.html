@@ -30,7 +30,7 @@
                 {% endautoescape %}
             {% for entry in total_entries %}
                 <a href = '/accounting_entry/{{ entry.id }}'>
-                    <div class='manage-card'>
+                    <div class='card'>
                         {% if entry.entry_type == 'OUT' %}
                         <span class = 'accentuated_tag'>支出: {{ entry.author }}</span>
                         {% else %}

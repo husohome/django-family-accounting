@@ -7,14 +7,18 @@ def homepage(request):
     #return HttpResponse('home page!')
     return redirect('accounting_entry:homepage')
 
+def help(request):
+    return render(request, 'help.html')
+
+
 # Create your views here.
-def create_user(request):
-    if request.method == "POST":
-        f = UserCreationForm(request.POST)
-        if f.is_valid():
-            user = f.save()
-            login(request, user)
-            return redirect('accounting_entry:homepage')
-    else:
-        f = UserCreationForm()
-    return render(request, 'users/create_user.html', {"f":f})
+#def create_user(request):
+#    if request.method == "POST":
+#        f = UserCreationForm(request.POST)
+#        if f.is_valid():
+#            user = f.save()
+#            login(request, user)
+#            return redirect('accounting_entry:homepage')
+#    else:
+#        f = UserCreationForm()
+#    return render(request, 'users/create_user.html', {"f":f})

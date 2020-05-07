@@ -20,8 +20,9 @@ from accounting_entry import views as accounting_entry_views
 
 urlpatterns = [
     path('accounting_entry/', include('accounting_entry.urls')),
-    path('create_user', views.create_user),
+    #path('create_user', views.create_user),
     path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
+    path('help/', views.help),
     path('', views.homepage)
 ]

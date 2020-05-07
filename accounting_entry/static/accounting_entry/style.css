@@ -193,7 +193,7 @@ tr:hover {
     color: #777;
 }
 
-footer, message {
+footer, .message {
     grid-area: footer;
     font-weight: 300;
     font-size: .8em;
