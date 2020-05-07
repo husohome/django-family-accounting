@@ -8,5 +8,6 @@ urlpatterns = [
     path('<int:entry_id>/', views.detail, name="detail"),
     path('edit/<int:entry_id>', views.edit_entry, name="edit"),
     path('create', views.add_entry, name="add"),
-    path('manage', views.manage_entries, name="manage")
+    path('manage', views.manage_entries, name="manage"),
+    path('help', views.help, name='help'),
 ]

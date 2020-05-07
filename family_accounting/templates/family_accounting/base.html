@@ -26,7 +26,7 @@
             <ul>
                 <li><a href="{% url 'accounting_entry:add' %}">新增明細</a></li>
                 <li><a href="{% url 'accounting_entry:manage' %}">修改我的明細</a></li>
-                <li><a href="{% url 'help' %}">使用說明</a></li>
+                <li><a href="{% url 'accounting_entry:help' %}">使用說明</a></li>
             {% if user.is_authenticated %}
             <li>
                 <form action = "{% url 'users:logout_user' %}" method="post">
