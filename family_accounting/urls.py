@@ -23,6 +23,6 @@ urlpatterns = [
     #path('create_user', views.create_user),
     path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
-    path('help/', views.help),
+    path('help/', views.help, name='help'),
     path('', views.homepage)
 ]
