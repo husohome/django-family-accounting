@@ -10,7 +10,6 @@ def homepage(request):
 def help(request):
     return render(request, 'help.html')
 
-
 # Create your views here.
 #def create_user(request):
 #    if request.method == "POST":

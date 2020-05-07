@@ -115,7 +115,3 @@ def manage_entries(request):
         #f.Meta.widgets = {"item": Select(choices = items)}
         #return HttpResponse(items)
     return render(request, 'accounting_entry/manage_entries.html', {'f':f, 'f_len':len(f)>0})
-
-@login_required(login_url="users:login_user")
-def help(request):
-    return render(request, 'help.html')
