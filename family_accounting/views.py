@@ -8,7 +8,7 @@ def homepage(request):
     return redirect('accounting_entry:homepage')
 
 def help(request):
-    return render(request, 'family_accounting/help.html')
+    return render(request, 'help.html')
 
 
 # Create your views here.
