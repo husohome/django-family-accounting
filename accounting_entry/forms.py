@@ -3,7 +3,7 @@ from .models import Entry
 
 def generate_choices():
     items = list(set([(e.item, e.item) for e in Entry.objects.order_by('-pub_date')]))
-    items.append(('其他','其他'))
+    #items.append(('其他','其他'))
     return items
 
 class EntryForm(ModelForm):
@@ -11,7 +11,7 @@ class EntryForm(ModelForm):
         model = Entry
         fields = ['pub_date', 'item', 'entry_type', 'amount', 'note', 'receipt']
         widgets = {
-            'item': Select(choices = generate_choices()),
+            #'item': Select(choices = generate_choices()),
             #'entry_type': RadioSelect()
         }
         localized_fields = ('pub_date',)
