@@ -6,6 +6,7 @@ from .models import Entry
 from .forms import EntryForm
 import pandas as pd
 from django.contrib.auth.decorators import login_required
+from numpy import nan
 
 # Create your views here.
 @login_required(login_url="users:login_user")
@@ -20,7 +21,7 @@ def summary_page(request):
         '支出': [e.amount if e.entry_type=='OUT' else 0 for e in total_entries],
         'note': [e.note for e in total_entries],
         'receipt': [e.receipt for e in total_entries],
-        'author': [e.author.username if e.author.username != "husohome" for e in total_entries],
+        'author': [e.author.username if e.author.username != "husohome" else nan for e in total_entries]
         }
     )
 
