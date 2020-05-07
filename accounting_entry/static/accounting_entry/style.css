@@ -181,6 +181,7 @@ table, thead, th, tr, td {
     padding: 1px;
     border: 1px solid #ccc;
     margin: 0 auto;
+    text-align: right;
 }
 
 tr:hover {
