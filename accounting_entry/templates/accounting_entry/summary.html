@@ -4,7 +4,7 @@
     {% endblock title %}
     {% block content %}
         {% if total_entries %}
-                <div class = 'card'>
+                <div class = 'manage-card'>
                     <span class = 'accentuated_tag'>總計</span>
                     <ul>
                         <li><span class = 'tag'>收入</span>
@@ -30,7 +30,7 @@
                 {% endautoescape %}
             {% for entry in total_entries %}
                 <a href = '/accounting_entry/{{ entry.id }}'>
-                    <div class='card'>
+                    <div class='manage-card'>
                         {% if entry.entry_type == 'OUT' %}
                         <span class = 'accentuated_tag'>支出: {{ entry.author }}</span>
                         {% else %}
