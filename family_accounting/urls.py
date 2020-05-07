@@ -18,6 +18,8 @@ from django.urls import path, include
 from . import views
 from accounting_entry import views as accounting_entry_views
 
+app_name = 'base'
+
 urlpatterns = [
     path('accounting_entry/', include('accounting_entry.urls')),
     #path('create_user', views.create_user),

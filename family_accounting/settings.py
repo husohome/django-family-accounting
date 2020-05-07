@@ -56,7 +56,7 @@ ROOT_URLCONF = 'family_accounting.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['family_accounting/templates'],
+        'DIRS': ['family_accounting/templates/family_accounting/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
