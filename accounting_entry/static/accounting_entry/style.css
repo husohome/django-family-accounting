@@ -47,7 +47,7 @@ header {
     display: none;
     position: fixed;
     top: .5em;
-    right: .5em;
+    left: .5em;
     background: #6a7f7a;
     border: 1px solid #6a7f7a;
     opacity: .9;
