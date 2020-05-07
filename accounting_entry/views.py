@@ -19,9 +19,14 @@ def summary_page(request):
         '收入': [e.amount if e.entry_type=='IN' else 0 for e in total_entries],
         '支出': [e.amount if e.entry_type=='OUT' else 0 for e in total_entries],
         'note': [e.note for e in total_entries],
-        'receipt': [e.receipt for e in total_entries]
+        'receipt': [e.receipt for e in total_entries],
+        'author': [e.author.username if e.author.username != "husohome" for e in total_entries],
         }
     )
+
+    xtab = pd.crosstab([df['年'], df['月']], df['author'], values=df['支出'], aggfunc=sum,margins=True).reset_index()
+    xtab.columns.name=None
+    xtab.fillna(0)
 
     income = df['收入'].sum().astype(int)
     expenditure = df['支出'].sum().astype(int)
@@ -32,6 +37,7 @@ def summary_page(request):
         'amount_left': income - expenditure,
         'df': df.to_html(),
         'df_by_month': df.groupby(['年', '月'])[['收入','支出']].sum().reset_index().to_html(),
+        'xtab': xtab.to_html(),
     }
     return render(request, 'accounting_entry/summary.html', context)
 

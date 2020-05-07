@@ -114,11 +114,11 @@ nav li a {
 .card, .manage-card {
     box-shadow: .2em .2em .1em #e6f3bf;
     border: 1px solid #6a7f7a;
-    padding: 0;
+    padding: .3em;
 }
 
 .card {
-    width: 10em;
+    //width: 10em;
     overflow-wrap: break-word;
 }
 
@@ -178,7 +178,7 @@ input[type="submit"] {
 
 table, thead, th, tr, td {
     border-collapse: collapse;
-    padding: 1px;
+    padding: .3em;
     border: 1px solid #ccc;
     margin: 0 auto;
     text-align: right;
@@ -189,7 +189,11 @@ tr:hover {
 
 }
 
-footer {
+.message {
+    color: #777;
+}
+
+footer, message {
     grid-area: footer;
     font-weight: 300;
     font-size: .8em;

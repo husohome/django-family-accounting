@@ -19,9 +19,13 @@
                     </ul>
                 </div>
                 {% autoescape off %}
-                <div class='card'>
+                <div class='manage-card'>
                     <span class = 'accentuated_tag'>按月小計</span>
                     {{ df_by_month }}
+                </div>
+                <div class='manage-card'>
+                    <span class = 'accentuated_tag'>每人每月支出</span>
+                    {{ xtab }}
                 </div>
                 {% endautoescape %}
             {% for entry in total_entries %}
