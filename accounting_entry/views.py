@@ -29,6 +29,10 @@ def summary_page(request):
     xtab.columns.name=None
     xtab.fillna(0)
 
+    df_by_month = df.groupby(['年', '月'])[['收入','支出']].sum().reset_index()
+    df_by_month['小記']= df_by_month['收入']-df_by_month['支出']
+    df_by_month['結餘']=df_by_month['小記'].cumsum()
+
     income = df['收入'].sum().astype(int)
     expenditure = df['支出'].sum().astype(int)
     context  = {
@@ -37,7 +41,7 @@ def summary_page(request):
         'total_entries': total_entries,
         'amount_left': income - expenditure,
         'df': df.to_html(),
-        'df_by_month': df.groupby(['年', '月'])[['收入','支出']].sum().reset_index().to_html(),
+        'df_by_month': df_by_month.to_html(),
         'xtab': xtab.to_html(),
     }
     return render(request, 'accounting_entry/summary.html', context)
